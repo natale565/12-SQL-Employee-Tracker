@@ -5,13 +5,13 @@ CREATE DATABASE employee_info_db;
 USE employee_info_db;
 
 CREATE TABLE departments (
-  id INT NOT NULL AUTO_INCREMENT,
+  id SERIAL NOT NULL,
   name VARCHAR(255) NOT NULL,
   PRIMARY KEY(id)
 );
 
 CREATE TABLE roles (
-  id INT NOT NULL AUTO_INCREMENT,
+  id SERIAL NOT NULL,
   title VARCHAR(255) NOT NULL,
   salary DECIMAL(10, 2) NOT NULL,
   department_id INT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE roles (
 );
 
 CREATE TABLE employees (
-  id INT NOT NULL AUTO_INCREMENT,
+  id SERIAL NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   role_id INT NOT NULL,
