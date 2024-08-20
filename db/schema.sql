@@ -1,31 +1,24 @@
-DROP DATABASE IF EXISTS employee_info_db;
+DROP DATABASE IF EXISTS employee_db;
+CREATE DATABASE employee_db;
 
-CREATE DATABASE employee_info_db;
-
-USE employee_info_db;
+\c employee_db;
 
 CREATE TABLE departments (
-  id SERIAL NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  PRIMARY KEY(id)
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE roles (
-  id SERIAL NOT NULL,
-  title VARCHAR(255) NOT NULL,
-  salary DECIMAL(10, 2) NOT NULL,
-  department_id INT NOT NULL,
-  PRIMARY KEY(id)
-  FOREIGN KEY (department_id) REFERENCES departments(id)
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL,
+    department_id INT REFERENCES departments(id)
 );
 
 CREATE TABLE employees (
-  id SERIAL NOT NULL,
-  first_name VARCHAR(255) NOT NULL,
-  last_name VARCHAR(255) NOT NULL,
-  role_id INT NOT NULL,
-  manager_id INT NOT NULL,
-  PRIMARY KEY(id),
-  FOREIGN KEY (role_id) REFERENCES roles(id),
-  FOREIGN KEY (manager_id) REFERENCES employees(id)
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    role_id INT REFERENCES roles(id),
+    manager_id INT REFERENCES employees(id)
 );
